@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Expense Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <h1>Expense Tracker</h1>
+
+        <nav>
+            <a href="#dashboard">
+                Dashboard
+            </a>
+
+            <a href="#add-expense">
+                Add Expense
+            </a>
+
+            <a href="#all-expenses">
+                All Expenses
+            </a>
+
+        </nav>
+
+    </header>
+
+    <main>
+
+        <div class="app-layout">
+
+            <!--Left column-->
+            <div class="left-column">
+
+                <!-- Dashboard -->
+                <section id="dashboard">
+
+                    <h2>Dashboard</h2>
+                    <div class="dashboard-container">
+
+                        <div class="dashboard-card">
+
+                            <h3>Total Spending</h3>
+
+                            <p id="total-expenses">
+                                ₹0.00
+                            </p>
+
+                        </div>
+
+                        <div class="dashboard-card">
+                            <h3>Number of Expenses</h3>
+
+                            <p id="expense-count">
+                                0
+                            </p>
+
+                        </div>
+                    </div>
+
+                </section>
+
+                <section id="add-expense">
+                    <h2>Add Expense</h2>
+
+                    <form>
+                        <label for="amount">
+                            Amount
+                        </label>
+                        <input
+                            type="number"
+                            id="amount"
+                            name="amount"
+                            placeholder="Enter amount"
+                            min="0"
+                            step="0.01"
+                            required
+                        >
+
+                        <label for="description">
+                            Description
+                        </label>
+                        <input
+                            type="text"
+                            id="description"
+                            name="description"
+                            placeholder="Enter description"
+                            required
+                        >
+
+                        <label for="category">
+                            Category
+                        </label>
+                        <select
+                            id="category" name="category"
+                            required>
+
+                            <option value="" disabled selected>Select a category</option>
+                            <option value="Food">Food</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Bills">Bills</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Others">Others</option>
+                        </select>
+
+                        <label for="date">
+                            Date
+                        </label>
+                        <input
+                            type="date"
+                            id="date"
+                            name="date"
+                            required
+                        >
+
+                        <!-- Submit -->
+                        <button type="submit" id="submit-btn">
+                            Add Expense
+                        </button>
+
+                    </form>
+
+                </section>
+            </div>
+
+
+            <!--Right column-->
+
+            <section id="all-expenses">
+                <h2>All Expenses</h2>
+                <!-- FILTERS -->
+                <div class="filters">
+
+                    <!-- Category Filter -->
+                    <div>
+
+                        <label for="category-filter">
+                            Category
+                        </label>
+
+                        <select id="category-filter">
+                            <option value="All">
+                                All
+                            </option>
+                            <option value="Food">
+                                Food
+                            </option>
+                            <option value="Transport">
+                                Transport
+                            </option>
+                            <option value="Shopping">
+                                Shopping
+                            </option>
+                            <option value="Bills">
+                                Bills
+                            </option>
+                            <option value="Entertainment">
+                                Entertainment
+                            </option>
+                            <option value="Others">
+                                Others
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- Month Filter -->
+                    <div>
+
+                        <label for="month-filter">
+                            Month
+                        </label>
+                        <input
+                            type="month"
+                            id="month-filter"
+                        >
+
+                    </div>
+
+                </div>
+
+                <!-- Loading message -->
+                <p id="loading">
+                    Loading expenses...
+                </p>
+
+                <!-- Error message -->
+                <p id="error-message"></p>
+
+                <!-- Expense List -->
+                <div id="expense-list"></div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <footer>
+
+        <p>
+            Expense Tracker
+        </p>
+
+    </footer>
+
+
+
+    <!-- Java script -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
