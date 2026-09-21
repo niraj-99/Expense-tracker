@@ -9,6 +9,7 @@ const submitButton = document.querySelector("#submit-btn");
 
 const categoryFilter =document.querySelector("#category-filter");
 const monthFilter = document.querySelector("#month-filter");
+const searchInput= document.querySelector("#search-input")
 
 const loadingMessage =document.querySelector("#loading");
 const errorMessage = document.querySelector("#error-message");
@@ -84,6 +85,10 @@ function loadExpenses() {
         params.append("month", monthFilter.value);
     }
 
+    //search
+    if(searchInput.value.trim() !==""){
+        params.append("search",searchInput.value.trim())
+    }
 
     if(params.toString()){
         url += "?" + params.toString();
@@ -211,6 +216,8 @@ function hideError() {errorMessage.style.display ="none";}
 //Filters
 categoryFilter.addEventListener("change", loadExpenses);
 monthFilter.addEventListener("change", loadExpenses);
+
+searchInput.addEventListener("input", loadExpenses)
 
 //Initial load
 loadExpenses();

@@ -26,7 +26,7 @@ db.prepare(`
 //Get all or filtered expenses
 app.get("/api/expenses", (req,res)=>{
     try{
-        const{category,month} = req.query;   //.query as we look for it in the URL
+        const{category,month, search} = req.query;   //.query as we look for it in the URL
 
         let query= "SELECT * FROM expenses";  //Baseline for dynamic query
         const conditions=[];      //Initialising conditions for the dynamic query building
@@ -42,6 +42,12 @@ app.get("/api/expenses", (req,res)=>{
         if(month){
             conditions.push("date LIKE @month");
             values.month=`${month}%`;
+        }
+
+        //Search
+        if (search){
+            conditions.push("description LIKE @search");
+            values.search=`%${search}%`
         }
 
         //If filters exists add WHERE and join the values to build the query
