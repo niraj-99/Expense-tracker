@@ -11,6 +11,8 @@ const categoryFilter =document.querySelector("#category-filter");
 const monthFilter = document.querySelector("#month-filter");
 const searchInput= document.querySelector("#search-input")
 
+const spendingLabel =document.querySelector("#spending")
+
 const loadingMessage =document.querySelector("#loading");
 const errorMessage = document.querySelector("#error-message");
 
@@ -123,6 +125,17 @@ function displayExpenses(expenses) {
     const total= expenses.reduce((sum,expense) =>{
         return sum+Number(expense.amount);},0);
 
+    //Dynamic dashboard
+    if (categoryFilter.value!=="All" && monthFilter.value){
+        spendingLabel.textContent= categoryFilter.value+ " Expenses in the month of " +monthFilter.value
+    } else if(categoryFilter.value!=="All"){
+        spendingLabel.textContent=categoryFilter.value+ " Expenses"
+    } else if(monthFilter.value){
+        spendingLabel.textContent= "Expenses in the month  " + monthFilter.value
+    } else{
+        spendingLabel.textContent = "Total spending"
+    }
+
     //Display total spending on dashboard
     document.querySelector("#total-expenses").textContent =`Rs.${total}`;
     document.querySelector("#expense-count").textContent =expenses.length;
@@ -217,7 +230,7 @@ function hideError() {errorMessage.style.display ="none";}
 categoryFilter.addEventListener("change", loadExpenses);
 monthFilter.addEventListener("change", loadExpenses);
 
-searchInput.addEventListener("input", loadExpenses)
+searchInput.addEventListener("input",loadExpenses)
 
 //Initial load
 loadExpenses();
